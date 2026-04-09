@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>About</title>
+</head>
+<body>
+
+<h1>About this project</h1>
+
+<p>
+This project reflects on online personality quizzes.
+</p>
+
+<p>
+Many quizzes claim to reveal deep truths, but often rely on vague questions and flexible interpretations.
+</p>
+
+<p>
+This quiz mimics that structure but produces simple results, inviting users to question how meaning is created.
+</p>
+
+</body>
+</html>

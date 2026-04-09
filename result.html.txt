@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Result</title>
+</head>
+<body>
+
+<h1 id="title"></h1>
+<p id="desc"></p>
+
+<button onclick="restart()">Try Again</button>
+
+<script>
+
+let answers = JSON.parse(localStorage.getItem("answers"));
+
+let count = { A: 0, B: 0, C: 0, D: 0 };
+
+answers.forEach(a => {
+  count[a]++;
+});
+
+let result = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+
+let title = "";
+let desc = "";
+
+if (result === "A") {
+  title = "You like apples";
+  desc = "You seem to prefer simple and balanced things. Or maybe you just like apples.";
+}
+
+if (result === "B") {
+  title = "You like the color red";
+  desc = "You are drawn to intensity and immediacy. Or maybe you just like red.";
+}
+
+if (result === "C") {
+  title = "You prefer staying in";
+  desc = "You value quiet and internal space. Or maybe you just like staying in.";
+}
+
+if (result === "D") {
+  title = "You like soft things";
+  desc = "You are sensitive to comfort and atmosphere. Or maybe you just like soft things.";
+}
+
+document.getElementById("title").innerText = title;
+document.getElementById("desc").innerText = desc;
+
+function restart() {
+  localStorage.clear();
+  window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>
