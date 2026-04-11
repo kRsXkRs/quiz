@@ -2,56 +2,80 @@
 <html>
 <head>
   <title>Result</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
 
-<h1 id="title"></h1>
-<p id="desc"></p>
+    <h1>Your Result</h1>
+    <div id="resultBox" class="result-box">
+      <h2 id="title"></h2>
+      <p id="desc"></p>
+    </div>
 
-<button onclick="restart()">Try Again</button>
+    <p class="small-note">Do you agree with your result? It may still feel accurate anyway.</p>
 
-<script>
+    <button onclick="restart()">Try Again</button>
+  </div>
 
-let answers = JSON.parse(localStorage.getItem("answers"));
+  <script>
+    let answers = JSON.parse(localStorage.getItem("answers"));
 
-let count = { A: 0, B: 0, C: 0, D: 0 };
+    if (!answers) {
+      window.location.href = "quiz.html";
+    }
 
-answers.forEach(a => {
-  count[a]++;
-});
+    let count = { A: 0, B: 0, C: 0, D: 0 };
 
-let result = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+    answers.forEach(a => {
+      count[a]++;
+    });
 
-let title = "";
-let desc = "";
+    let result = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
 
-if (result === "A") {
-  title = "You like apples";
-  desc = "You seem to prefer simple and balanced things. Or maybe you just like apples.";
-}
+    let title = "";
+    let desc = "";
+    let boxClass = "";
 
-if (result === "B") {
-  title = "You like the color red";
-  desc = "You are drawn to intensity and immediacy. Or maybe you just like red.";
-}
+    if (result === "A") {
+      title = "You like apples";
+      desc = "You seem drawn to balance, clarity, and familiar patterns. You may prefer things that feel stable and quietly consistent. Or maybe you just like apples.";
+      boxClass = "result-box result-a";
+    }
 
-if (result === "C") {
-  title = "You prefer staying in";
-  desc = "You value quiet and internal space. Or maybe you just like staying in.";
-}
+    if (result === "B") {
+      title = "You like the color red";
+      desc = "Your choices suggest an attraction to intensity, immediacy, and presence. You may move quickly and feel things strongly. Or maybe you just like red.";
+      boxClass = "result-box result-b";
+    }
 
-if (result === "D") {
-  title = "You like soft things";
-  desc = "You are sensitive to comfort and atmosphere. Or maybe you just like soft things.";
-}
+    if (result === "C") {
+      title = "You prefer staying in";
+      desc = "You seem to value controlled environments and a certain amount of internal space. Quiet settings may feel more natural to you. Or maybe you just prefer staying in.";
+      boxClass = "result-box result-c";
+    }
 
-document.getElementById("title").innerText = title;
-document.getElementById("desc").innerText = desc;
+    if (result === "D") {
+      title = "You like soft things";
+      desc = "Your answers reflect an attention to comfort, atmosphere, and emotional texture. You may be more responsive to how things feel than how they appear. Or maybe you just like soft things.";
+      boxClass = "result-box result-d";
+    }
 
-function restart() {
-  localStorage.clear();
-  window.location.href = "index.html";
-}
+    document.getElementById("title").innerText = title;
+    document.getElementById("desc").innerText = desc;
+    document.getElementById("resultBox").className = boxClass;
+
+    function restart() {
+      localStorage.clear();
+      window.location.href = "index.html";
+    }
+  </script>
+</body>
+</html>
 
 </script>
 
