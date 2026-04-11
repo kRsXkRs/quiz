@@ -1,25 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Personality Test</title>
+  <title>A Small Personality Test</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div class="container">
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
 
-  <h1>A Small Personality Test</h1>
+    <h1>A Small Personality Test</h1>
 
-  <p>This project is for people who often take online personality quizzes and identify with the results.</p>
+    <p>
+      This project is for people who frequently take online personality quizzes
+      and find themselves identifying with the results.
+    </p>
 
-  <p>This quiz explores how easily meaning can be created from vague questions and simple answers.</p>
+    <p>
+      Through a series of reflective questions, this quiz attempts to generate
+      a result based on your habits, preferences, and emotional tendencies.
+    </p>
 
-  <p>There are no right or wrong answers. Please go with your first instinct.</p>
+    <p>
+      At the same time, the project asks how easily meaning can be constructed
+      through familiar quiz language and simplified categories.
+    </p>
 
-  <button onclick="startQuiz()">Start</button>
+    <p class="small-note">Estimated time: 2–3 minutes</p>
+
+    <button onclick="startQuiz()">Start the Quiz</button>
+  </div>
 
   <script>
     function startQuiz() {
       window.location.href = "quiz.html";
     }
   </script>
-
 </body>
 </html>
