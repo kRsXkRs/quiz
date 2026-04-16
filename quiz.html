@@ -5,177 +5,177 @@
 </head>
 <body>
 
-<h2>Quiz</h2>
-<p id="progress"></p>
+  <h2>Quiz</h2>
+  <p id="progress"></p>
 
-<form id="quizForm">
-  <p id="questionText"></p>
+  <form id="quizForm">
+    <p id="questionText"></p>
 
-  <label>
-    <input type="radio" name="answer" value="A">
-    <span id="optionA"></span>
-  </label>
-  <br>
+    <label>
+      <input type="radio" name="answer" value="A">
+      <span id="optionA"></span>
+    </label>
+    <br>
 
-  <label>
-    <input type="radio" name="answer" value="B">
-    <span id="optionB"></span>
-  </label>
-  <br>
+    <label>
+      <input type="radio" name="answer" value="B">
+      <span id="optionB"></span>
+    </label>
+    <br>
 
-  <label>
-    <input type="radio" name="answer" value="C">
-    <span id="optionC"></span>
-  </label>
-  <br>
+    <label>
+      <input type="radio" name="answer" value="C">
+      <span id="optionC"></span>
+    </label>
+    <br>
 
-  <label>
-    <input type="radio" name="answer" value="D">
-    <span id="optionD"></span>
-  </label>
-  <br><br>
+    <label>
+      <input type="radio" name="answer" value="D">
+      <span id="optionD"></span>
+    </label>
+    <br><br>
 
-  <button type="submit" id="nextBtn">Next</button>
-</form>
+    <button type="submit" id="nextBtn">Next</button>
+  </form>
 
-<script>
-  const questions = [
-    {
-      question: "1. When you wake up, what do you check first?",
-      options: {
-        A: "Messages",
-        B: "Notifications",
-        C: "Social media",
-        D: "Nothing"
+  <script>
+    const questions = [
+      {
+        question: "1. When you wake up, what do you check first?",
+        options: {
+          A: "Messages",
+          B: "Notifications",
+          C: "Social media",
+          D: "Nothing"
+        }
+      },
+      {
+        question: "2. When stressed, you often:",
+        options: {
+          A: "Overthink",
+          B: "Avoid it",
+          C: "Try to organize",
+          D: "Distract yourself"
+        }
+      },
+      {
+        question: "3. You care more about:",
+        options: {
+          A: "Others' opinions",
+          B: "Your own feelings",
+          C: "Both",
+          D: "I don't give a shit"
+        }
+      },
+      {
+        question: "4. You make decisions by:",
+        options: {
+          A: "Instinct",
+          B: "Overthinking",
+          C: "Asking others",
+          D: "Delaying"
+        }
+      },
+      {
+        question: "5. Which environment do you prefer:",
+        options: {
+          A: "Quiet",
+          B: "Cozy",
+          C: "Organized",
+          D: "Depends"
+        }
+      },
+      {
+        question: "6. What do rules mean to you:",
+        options: {
+          A: "Important",
+          B: "Restricting",
+          C: "Rules are meant to be broken.",
+          D: "What is that"
+        }
+      },
+      {
+        question: "7. When something goes wrong:",
+        options: {
+          A: "doubt yourself",
+          B: "Fix it",
+          C: "Take a break",
+          D: "Ignore it"
+        }
+      },
+      {
+        question: "8. Which one do you like:",
+        options: {
+          A: "Aapples",
+          B: "Red",
+          C: "Staying in",
+          D: "Video game"
+        }
       }
-    },
-    {
-      question: "2. When stressed, you:",
-      options: {
-        A: "Overthink",
-        B: "Avoid",
-        C: "Organize",
-        D: "Distract yourself"
+    ];
+
+    let currentQuestion = parseInt(localStorage.getItem("currentQuestion")) || 0;
+    let answers = JSON.parse(localStorage.getItem("answers")) || [];
+
+    const progress = document.getElementById("progress");
+    const questionText = document.getElementById("questionText");
+    const optionA = document.getElementById("optionA");
+    const optionB = document.getElementById("optionB");
+    const optionC = document.getElementById("optionC");
+    const optionD = document.getElementById("optionD");
+    const nextBtn = document.getElementById("nextBtn");
+
+    function loadQuestion() {
+      const q = questions[currentQuestion];
+
+      progress.innerText = "Question " + (currentQuestion + 1) + " of " + questions.length;
+      questionText.innerText = q.question;
+      optionA.innerText = q.options.A;
+      optionB.innerText = q.options.B;
+      optionC.innerText = q.options.C;
+      optionD.innerText = q.options.D;
+
+      const radios = document.querySelectorAll('input[name="answer"]');
+      radios.forEach(radio => radio.checked = false);
+
+      if (answers[currentQuestion]) {
+        const saved = document.querySelector(`input[name="answer"][value="${answers[currentQuestion]}"]`);
+        if (saved) saved.checked = true;
       }
-    },
-    {
-      question: "3. You care more about:",
-      options: {
-        A: "Others' opinions",
-        B: "Your own feelings",
-        C: "Both",
-        D: "Not sure"
-      }
-    },
-    {
-      question: "4. You make decisions by:",
-      options: {
-        A: "Instinct",
-        B: "Thinking a lot",
-        C: "Asking others",
-        D: "Delaying"
-      }
-    },
-    {
-      question: "5. Preferred environment:",
-      options: {
-        A: "Quiet",
-        B: "Busy",
-        C: "Organized",
-        D: "Depends"
-      }
-    },
-    {
-      question: "6. Routine:",
-      options: {
-        A: "Important",
-        B: "Restricting",
-        C: "Hard to keep",
-        D: "Don't think about it"
-      }
-    },
-    {
-      question: "7. When something goes wrong:",
-      options: {
-        A: "Analyze",
-        B: "Fix it",
-        C: "Take a break",
-        D: "Ignore it"
-      }
-    },
-    {
-      question: "8. Choose your result:",
-      options: {
-        A: "You like apples",
-        B: "You like the color red",
-        C: "You prefer staying in",
-        D: "You like soft things"
+
+      if (currentQuestion === questions.length - 1) {
+        nextBtn.innerText = "See My Result";
+      } else {
+        nextBtn.innerText = "Next";
       }
     }
-  ];
 
-  let currentQuestion = parseInt(localStorage.getItem("currentQuestion")) || 0;
-  let answers = JSON.parse(localStorage.getItem("answers")) || [];
+    document.getElementById("quizForm").addEventListener("submit", function(e) {
+      e.preventDefault();
 
-  const progress = document.getElementById("progress");
-  const questionText = document.getElementById("questionText");
-  const optionA = document.getElementById("optionA");
-  const optionB = document.getElementById("optionB");
-  const optionC = document.getElementById("optionC");
-  const optionD = document.getElementById("optionD");
-  const nextBtn = document.getElementById("nextBtn");
+      const selected = document.querySelector('input[name="answer"]:checked');
 
-  function loadQuestion() {
-    const q = questions[currentQuestion];
+      if (!selected) {
+        alert("Please choose an answer.");
+        return;
+      }
 
-    progress.innerText = "Question " + (currentQuestion + 1) + " of " + questions.length;
-    questionText.innerText = q.question;
-    optionA.innerText = q.options.A;
-    optionB.innerText = q.options.B;
-    optionC.innerText = q.options.C;
-    optionD.innerText = q.options.D;
+      answers[currentQuestion] = selected.value;
+      localStorage.setItem("answers", JSON.stringify(answers));
 
-    const radios = document.querySelectorAll('input[name="answer"]');
-    radios.forEach(radio => radio.checked = false);
+      if (currentQuestion === questions.length - 1) {
+        localStorage.removeItem("currentQuestion");
+        window.location.href = "result.html";
+        return;
+      }
 
-    if (answers[currentQuestion]) {
-      const saved = document.querySelector(`input[name="answer"][value="${answers[currentQuestion]}"]`);
-      if (saved) saved.checked = true;
-    }
+      currentQuestion++;
+      localStorage.setItem("currentQuestion", currentQuestion);
+      loadQuestion();
+    });
 
-    if (currentQuestion === questions.length - 1) {
-      nextBtn.innerText = "See My Result";
-    } else {
-      nextBtn.innerText = "Next";
-    }
-  }
-
-  document.getElementById("quizForm").addEventListener("submit", function(e) {
-    e.preventDefault();
-
-    const selected = document.querySelector('input[name="answer"]:checked');
-
-    if (!selected) {
-      alert("Please choose an answer.");
-      return;
-    }
-
-    answers[currentQuestion] = selected.value;
-    localStorage.setItem("answers", JSON.stringify(answers));
-
-    if (currentQuestion === questions.length - 1) {
-      localStorage.removeItem("currentQuestion");
-      window.location.href = "result.html";
-      return;
-    }
-
-    currentQuestion++;
-    localStorage.setItem("currentQuestion", currentQuestion);
     loadQuestion();
-  });
-
-  loadQuestion();
-</script>
+  </script>
 
 </body>
 </html>
