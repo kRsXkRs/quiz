@@ -1,16 +1,17 @@
 body {
   margin: 0;
   font-family: Arial, sans-serif;
-  background: #f5f5f1;
+  background: #f4f1ea;
   color: #222;
 }
 
 .container {
+  width: 90%;
   max-width: 720px;
   margin: 60px auto;
-  padding: 40px;
-  background: white;
+  background: #fff;
   border: 1px solid #ddd;
+  padding: 40px;
   box-sizing: border-box;
 }
 
@@ -19,9 +20,9 @@ body {
 }
 
 .nav a {
-  margin-right: 18px;
+  color: #555;
   text-decoration: none;
-  color: #444;
+  margin-right: 18px;
   font-size: 14px;
 }
 
@@ -41,41 +42,42 @@ h1, h2 {
 }
 
 #questionText {
-  font-size: 26px;
+  font-size: 28px;
   line-height: 1.5;
-  margin-bottom: 28px;
+  margin-bottom: 30px;
 }
 
-form label {
+.option {
   display: block;
-  margin-bottom: 14px;
-  padding: 16px 18px;
   border: 1px solid #ccc;
   background: #fafafa;
+  padding: 16px 18px;
+  margin-bottom: 14px;
   cursor: pointer;
   transition: 0.2s;
 }
 
-form label:hover {
-  background: #f0f0f0;
+.option:hover {
+  background: #f1f1f1;
   border-color: #999;
 }
 
-input[type="radio"] {
+.option input[type="radio"] {
   margin-right: 10px;
 }
 
-input[type="radio"]:checked + span {
+.option input[type="radio"]:checked + span {
   font-weight: bold;
 }
 
 button {
+  margin-top: 10px;
   padding: 12px 22px;
+  font-size: 15px;
   border: 1px solid #222;
   background: #222;
-  color: white;
+  color: #fff;
   cursor: pointer;
-  font-size: 15px;
 }
 
 button:hover {
@@ -109,9 +111,4 @@ button:hover {
   margin-top: 18px;
   font-size: 13px;
   color: #777;
-}
-.small-note {
-  font-size: 14px;
-  color: #666;
-  margin-top: 20px;
 }
