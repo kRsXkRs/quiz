@@ -1,42 +1,17 @@
 body {
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: #f7f7f7;
-  color: #222;
   margin: 0;
-  padding: 0;
+  font-family: Arial, sans-serif;
+  background: #f5f5f1;
+  color: #222;
 }
 
 .container {
-  width: 80%;
-  max-width: 800px;
+  max-width: 720px;
   margin: 60px auto;
-  background: white;
   padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-}
-
-h1, h2 {
-  margin-top: 0;
-}
-
-p {
-  line-height: 1.6;
-}
-
-.button, button {
-  background: black;
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  margin-top: 20px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 16px;
-}
-
-.button:hover, button:hover {
-  background: #333;
+  background: white;
+  border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 .nav {
@@ -44,53 +19,97 @@ p {
 }
 
 .nav a {
-  margin-right: 16px;
+  margin-right: 18px;
   text-decoration: none;
   color: #444;
   font-size: 14px;
 }
 
-.question {
-  margin-bottom: 30px;
-  padding: 20px;
-  background: #fafafa;
-  border: 1px solid #e5e5e5;
-  border-radius: 10px;
+.nav a:hover {
+  text-decoration: underline;
 }
 
-.question p {
-  font-weight: bold;
-  margin-bottom: 12px;
+h1, h2 {
+  margin-top: 0;
+  font-weight: normal;
 }
 
-label {
+#progress {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+#questionText {
+  font-size: 26px;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+form label {
   display: block;
-  margin: 8px 0;
+  margin-bottom: 14px;
+  padding: 16px 18px;
+  border: 1px solid #ccc;
+  background: #fafafa;
   cursor: pointer;
+  transition: 0.2s;
+}
+
+form label:hover {
+  background: #f0f0f0;
+  border-color: #999;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+input[type="radio"]:checked + span {
+  font-weight: bold;
+}
+
+button {
+  padding: 12px 22px;
+  border: 1px solid #222;
+  background: #222;
+  color: white;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+button:hover {
+  background: #444;
 }
 
 .result-box {
-  padding: 24px;
-  border-radius: 12px;
   margin-top: 20px;
+  padding: 24px;
+  border: 1px solid #ccc;
+  background: #fafafa;
 }
 
 .result-a {
-  background-color: #e7f4e4;
+  background: #f6f1e8;
 }
 
 .result-b {
-  background-color: #fbe4e4;
+  background: #f8eaea;
 }
 
 .result-c {
-  background-color: #ececec;
+  background: #eef3ee;
 }
 
 .result-d {
-  background-color: #f7e8f4;
+  background: #eceffd;
 }
 
+.small-note {
+  margin-top: 18px;
+  font-size: 13px;
+  color: #777;
+}
 .small-note {
   font-size: 14px;
   color: #666;
