@@ -5,6 +5,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <div class="container">
     <div class="nav">
       <a href="index.html">Home</a>
@@ -12,6 +13,7 @@
     </div>
 
     <h1>Your Result</h1>
+
     <div id="resultBox" class="result-box">
       <h2 id="title"></h2>
       <p id="desc"></p>
@@ -25,64 +27,50 @@
   <script>
     let answers = JSON.parse(localStorage.getItem("answers"));
 
-    if (!answers) {
+    if (!answers || answers.length < 8) {
       window.location.href = "quiz.html";
     }
 
-    let count = { A: 0, B: 0, C: 0, D: 0 };
-
-    answers.forEach(a => {
-      count[a]++;
-    });
-
-    let result = Object.keys(count).reduce((a, b) => count[a] > count[b] ? a : b);
+    let result = answers[7];
 
     let title = "";
     let desc = "";
     let boxClass = "";
 
-  if (result === "A") {
-  title = "You like apples";
-  desc = "There seems to be a quiet alignment between your choices and something that feels simple, grounded, and almost self-evident. It suggests a preference that may not need much explanation, because in a way, the explanation is the preference itself. When all the layers are set aside, it points back to something familiar, something direct. Or, put more plainly, you like apples.";
-  boxClass = "result-box result-a";
-}
+    if (result === "A") {
+      title = "You like apples";
+      desc = "There seems to be a quiet alignment between your choices and something that feels simple, grounded, and almost self-evident. It suggests a preference that may not need much explanation, because in a way, the explanation is the preference itself. When all the layers are set aside, it points back to something familiar, something direct. Or, put more plainly, you like apples.";
+      boxClass = "result-box result-a";
+    }
 
-if (result === "B") {
-  title = "You like the color red";
-  desc = "Your responses seem to circle around a sense of intensity that feels both immediate and hard to fully define. There’s an impression of movement, of something vivid that doesn’t quite settle into a single interpretation, yet keeps returning to the same place. And when you follow that thread all the way through, it leads back to something surprisingly straightforward. You like the color red.";
-  boxClass = "result-box result-b";
-}
+    if (result === "B") {
+      title = "You like the color red";
+      desc = "Your responses seem to circle around a sense of intensity that feels both immediate and hard to fully define. There’s an impression of movement, of something vivid that doesn’t quite settle into a single interpretation, yet keeps returning to the same place. And when you follow that thread all the way through, it leads back to something surprisingly straightforward. You like the color red.";
+      boxClass = "result-box result-b";
+    }
 
-if (result === "C") {
-  title = "You prefer staying in";
-  desc = "There’s a pattern in your answers that leans toward a kind of contained space, where things remain within reach and easier to hold onto. It’s not necessarily about avoidance or preference in a simple sense, but more about a subtle consistency in how you orient yourself. And if that sounds vague, it kind of is—because in the end, it just points back to one clear idea: you prefer staying in.";
-  boxClass = "result-box result-c";
-}
+    if (result === "C") {
+      title = "You prefer staying in";
+      desc = "There’s a pattern in your answers that leans toward a kind of contained space, where things remain within reach and easier to hold onto. It’s not necessarily about avoidance or preference in a simple sense, but more about a subtle consistency in how you orient yourself. And if that sounds vague, it kind of is—because in the end, it just points back to one clear idea: you prefer staying in.";
+      boxClass = "result-box result-c";
+    }
 
-if (result === "D") {
-  title = "You like video games";
-  desc = "There’s a certain pattern in your responses that hints at engagement, immersion, and a tendency to move toward structured yet flexible systems. It suggests a preference for spaces where rules exist, but can be explored, bent, or even ignored depending on how you approach them. That might sound like it’s saying something deeper, but if you follow it all the way through, it ends up somewhere much simpler. You like video games.";
-  boxClass = "result-box result-d";
-}
+    if (result === "D") {
+      title = "You like video games";
+      desc = "There’s a certain pattern in your responses that hints at engagement, immersion, and a tendency to move toward structured yet flexible systems. It suggests a preference for spaces where rules exist, but can be explored, bent, or even ignored depending on how you approach them. That might sound like it’s saying something deeper, but if you follow it all the way through, it ends up somewhere much simpler. You like video games.";
+      boxClass = "result-box result-d";
+    }
 
     document.getElementById("title").innerText = title;
     document.getElementById("desc").innerText = desc;
     document.getElementById("resultBox").className = boxClass;
 
     function restart() {
-      localStorage.clear();
+      localStorage.removeItem("answers");
+      localStorage.removeItem("currentQuestion");
       window.location.href = "index.html";
     }
   </script>
-</body>
-</html>
-
-</script>
-
-</body>
-</html>
-
-</script>
 
 </body>
 </html>
