@@ -2,41 +2,45 @@
 <html>
 <head>
   <title>Quiz</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <h2>Quiz</h2>
-  <p id="progress"></p>
+  <div class="container">
+    <div class="nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+    </div>
 
-  <form id="quizForm">
-    <p id="questionText"></p>
+    <h2>Quiz</h2>
+    <p id="progress"></p>
 
-    <label>
-      <input type="radio" name="answer" value="A">
-      <span id="optionA"></span>
-    </label>
-    <br>
+    <form id="quizForm">
+      <p id="questionText"></p>
 
-    <label>
-      <input type="radio" name="answer" value="B">
-      <span id="optionB"></span>
-    </label>
-    <br>
+      <label class="option">
+        <input type="radio" name="answer" value="A">
+        <span id="optionA"></span>
+      </label>
 
-    <label>
-      <input type="radio" name="answer" value="C">
-      <span id="optionC"></span>
-    </label>
-    <br>
+      <label class="option">
+        <input type="radio" name="answer" value="B">
+        <span id="optionB"></span>
+      </label>
 
-    <label>
-      <input type="radio" name="answer" value="D">
-      <span id="optionD"></span>
-    </label>
-    <br><br>
+      <label class="option">
+        <input type="radio" name="answer" value="C">
+        <span id="optionC"></span>
+      </label>
 
-    <button type="submit" id="nextBtn">Next</button>
-  </form>
+      <label class="option">
+        <input type="radio" name="answer" value="D">
+        <span id="optionD"></span>
+      </label>
+
+      <button type="submit" id="nextBtn">Next</button>
+    </form>
+  </div>
 
   <script>
     const questions = [
@@ -97,7 +101,7 @@
       {
         question: "7. When something goes wrong:",
         options: {
-          A: "doubt yourself",
+          A: "Doubt yourself",
           B: "Fix it",
           C: "Take a break",
           D: "Ignore it"
@@ -106,10 +110,10 @@
       {
         question: "8. Which one do you like:",
         options: {
-          A: "Aapples",
+          A: "Apples",
           B: "Red",
           C: "Staying in",
-          D: "Video game"
+          D: "Video games"
         }
       }
     ];
@@ -174,6 +178,11 @@
       loadQuestion();
     });
 
+    loadQuestion();
+  </script>
+
+</body>
+</html>
     loadQuestion();
   </script>
 
