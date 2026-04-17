@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
   <title>A Small Personality Test</title>
@@ -35,6 +36,16 @@
 
   <script>
     function startQuiz() {
+      // 清空之前的进度和答案
+      localStorage.removeItem("answers");
+      localStorage.removeItem("currentQuestion");
+
+      // 跳转到 quiz
+      window.location.href = "quiz.html";
+    }
+  </script>
+</body>
+</html>
       window.location.href = "quiz.html";
     }
   </script>
